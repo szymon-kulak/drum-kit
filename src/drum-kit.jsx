@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import heater1 from "./assets/heater-1.mp3";
 import heater2 from "./assets/heater-2.mp3";
 import heater3 from "./assets/heater-3.mp3";
@@ -12,7 +12,6 @@ import closedHH from "./assets/closed-hh.mp3";
 function DrumKit() {
 	useEffect(() => {
 		document.addEventListener("keydown", (e) => {
-			let keyPressed = e.key.toUpperCase();
 			playSound(e.key.toUpperCase());
 		});
 	}, []);
@@ -65,7 +64,7 @@ function DrumKit() {
 		},
 	];
 
-	const [display, changeDisplay] = useState("");
+	const [display, changeDisplay] = useState("Welcome");
 
 	const playSound = function (selector) {
 		const audio = document.getElementById(selector);
@@ -80,17 +79,17 @@ function DrumKit() {
 
 	return (
 		<div
-			className="App flex flex-row items-start justify-start border-4 border-yellow-500 bg-zinc-400 p-4"
+			className="App flex flex-col-reverse items-center justify-start border-4 border-zinc-950 bg-zinc-700 p-4 sm:flex-row sm:items-start"
 			id="drum-machine"
 		>
-			<div className="m-4 grid grid-cols-3 gap-1">
+			<div className="m-4 grid grid-cols-3 gap-4">
 				{soundLibrary.map((sound) => (
 					<div
 						key={sound.name}
-						className="drum-pad flex h-20 w-20 content-center items-center justify-center rounded-xl border  border-zinc-950 bg-zinc-700 font-mono text-2xl font-bold transition-all duration-300 ease-linear hover:bg-zinc-600"
+						className="drum-pad flex h-20 w-20 cursor-pointer select-none content-center items-center justify-center border-2 border-zinc-950 bg-zinc-600 font-mono text-2xl font-bold text-orange-950 transition-all duration-300 ease-linear hover:bg-zinc-500"
 						id={sound.name}
 						onClick={() => {
-							playSound(sound.text, sound.name);
+							playSound(sound.text);
 						}}
 					>
 						{sound.text}
@@ -104,7 +103,7 @@ function DrumKit() {
 			</div>
 			<div
 				id="display"
-				className="m-4 w-40 border-2 border-zinc-950 bg-zinc-800 p-4"
+				className="font-Digital m-4 w-72 select-none overflow-hidden border-2 border-zinc-950 bg-zinc-800 p-4 text-xl text-orange-600 sm:w-48"
 			>
 				{display}
 			</div>
