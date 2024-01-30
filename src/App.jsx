@@ -1,14 +1,11 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import DrumKit from "./drum-kit";
 
 function App() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<div>
+		<div className="flex h-screen w-screen content-center items-center justify-center bg-zinc-800">
 			<DrumKit />
 		</div>
 	);
